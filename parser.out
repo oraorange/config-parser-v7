@@ -1,0 +1,456 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> config
+Rule 1     config -> elements
+Rule 2     elements -> element elements
+Rule 3     elements -> element
+Rule 4     element -> const_decl
+Rule 5     element -> dict
+Rule 6     element -> array
+Rule 7     const_decl -> NAME EQUALS value SEMICOLON
+Rule 8     dict -> LBRACE pairs RBRACE
+Rule 9     dict -> LBRACE RBRACE
+Rule 10    pairs -> pair
+Rule 11    pairs -> pair COMMA pairs
+Rule 12    pair -> NAME COLON value
+Rule 13    array -> LPAREN values RPAREN
+Rule 14    array -> LPAREN RPAREN
+Rule 15    values -> value
+Rule 16    values -> value COMMA values
+Rule 17    value -> NUMBER
+Rule 18    value -> dict
+Rule 19    value -> array
+Rule 20    value -> CONST_USE
+
+Terminals, with rules where they appear
+
+COLON                : 12
+COMMA                : 11 16
+CONST_USE            : 20
+EQUALS               : 7
+LBRACE               : 8 9
+LPAREN               : 13 14
+NAME                 : 7 12
+NUMBER               : 17
+RBRACE               : 8 9
+RPAREN               : 13 14
+SEMICOLON            : 7
+error                : 
+
+Nonterminals, with rules where they appear
+
+array                : 6 19
+config               : 0
+const_decl           : 4
+dict                 : 5 18
+element              : 2 3
+elements             : 1 2
+pair                 : 10 11
+pairs                : 8 11
+value                : 7 12 15 16
+values               : 13 16
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . config
+    (1) config -> . elements
+    (2) elements -> . element elements
+    (3) elements -> . element
+    (4) element -> . const_decl
+    (5) element -> . dict
+    (6) element -> . array
+    (7) const_decl -> . NAME EQUALS value SEMICOLON
+    (8) dict -> . LBRACE pairs RBRACE
+    (9) dict -> . LBRACE RBRACE
+    (13) array -> . LPAREN values RPAREN
+    (14) array -> . LPAREN RPAREN
+
+    NAME            shift and go to state 7
+    LBRACE          shift and go to state 8
+    LPAREN          shift and go to state 9
+
+    config                         shift and go to state 1
+    elements                       shift and go to state 2
+    element                        shift and go to state 3
+    const_decl                     shift and go to state 4
+    dict                           shift and go to state 5
+    array                          shift and go to state 6
+
+state 1
+
+    (0) S' -> config .
+
+
+
+state 2
+
+    (1) config -> elements .
+
+    $end            reduce using rule 1 (config -> elements .)
+
+
+state 3
+
+    (2) elements -> element . elements
+    (3) elements -> element .
+    (2) elements -> . element elements
+    (3) elements -> . element
+    (4) element -> . const_decl
+    (5) element -> . dict
+    (6) element -> . array
+    (7) const_decl -> . NAME EQUALS value SEMICOLON
+    (8) dict -> . LBRACE pairs RBRACE
+    (9) dict -> . LBRACE RBRACE
+    (13) array -> . LPAREN values RPAREN
+    (14) array -> . LPAREN RPAREN
+
+    $end            reduce using rule 3 (elements -> element .)
+    NAME            shift and go to state 7
+    LBRACE          shift and go to state 8
+    LPAREN          shift and go to state 9
+
+    element                        shift and go to state 3
+    elements                       shift and go to state 10
+    const_decl                     shift and go to state 4
+    dict                           shift and go to state 5
+    array                          shift and go to state 6
+
+state 4
+
+    (4) element -> const_decl .
+
+    NAME            reduce using rule 4 (element -> const_decl .)
+    LBRACE          reduce using rule 4 (element -> const_decl .)
+    LPAREN          reduce using rule 4 (element -> const_decl .)
+    $end            reduce using rule 4 (element -> const_decl .)
+
+
+state 5
+
+    (5) element -> dict .
+
+    NAME            reduce using rule 5 (element -> dict .)
+    LBRACE          reduce using rule 5 (element -> dict .)
+    LPAREN          reduce using rule 5 (element -> dict .)
+    $end            reduce using rule 5 (element -> dict .)
+
+
+state 6
+
+    (6) element -> array .
+
+    NAME            reduce using rule 6 (element -> array .)
+    LBRACE          reduce using rule 6 (element -> array .)
+    LPAREN          reduce using rule 6 (element -> array .)
+    $end            reduce using rule 6 (element -> array .)
+
+
+state 7
+
+    (7) const_decl -> NAME . EQUALS value SEMICOLON
+
+    EQUALS          shift and go to state 11
+
+
+state 8
+
+    (8) dict -> LBRACE . pairs RBRACE
+    (9) dict -> LBRACE . RBRACE
+    (10) pairs -> . pair
+    (11) pairs -> . pair COMMA pairs
+    (12) pair -> . NAME COLON value
+
+    RBRACE          shift and go to state 13
+    NAME            shift and go to state 15
+
+    pairs                          shift and go to state 12
+    pair                           shift and go to state 14
+
+state 9
+
+    (13) array -> LPAREN . values RPAREN
+    (14) array -> LPAREN . RPAREN
+    (15) values -> . value
+    (16) values -> . value COMMA values
+    (17) value -> . NUMBER
+    (18) value -> . dict
+    (19) value -> . array
+    (20) value -> . CONST_USE
+    (8) dict -> . LBRACE pairs RBRACE
+    (9) dict -> . LBRACE RBRACE
+    (13) array -> . LPAREN values RPAREN
+    (14) array -> . LPAREN RPAREN
+
+    RPAREN          shift and go to state 17
+    NUMBER          shift and go to state 19
+    CONST_USE       shift and go to state 22
+    LBRACE          shift and go to state 8
+    LPAREN          shift and go to state 9
+
+    values                         shift and go to state 16
+    value                          shift and go to state 18
+    dict                           shift and go to state 20
+    array                          shift and go to state 21
+
+state 10
+
+    (2) elements -> element elements .
+
+    $end            reduce using rule 2 (elements -> element elements .)
+
+
+state 11
+
+    (7) const_decl -> NAME EQUALS . value SEMICOLON
+    (17) value -> . NUMBER
+    (18) value -> . dict
+    (19) value -> . array
+    (20) value -> . CONST_USE
+    (8) dict -> . LBRACE pairs RBRACE
+    (9) dict -> . LBRACE RBRACE
+    (13) array -> . LPAREN values RPAREN
+    (14) array -> . LPAREN RPAREN
+
+    NUMBER          shift and go to state 19
+    CONST_USE       shift and go to state 22
+    LBRACE          shift and go to state 8
+    LPAREN          shift and go to state 9
+
+    value                          shift and go to state 23
+    dict                           shift and go to state 20
+    array                          shift and go to state 21
+
+state 12
+
+    (8) dict -> LBRACE pairs . RBRACE
+
+    RBRACE          shift and go to state 24
+
+
+state 13
+
+    (9) dict -> LBRACE RBRACE .
+
+    NAME            reduce using rule 9 (dict -> LBRACE RBRACE .)
+    LBRACE          reduce using rule 9 (dict -> LBRACE RBRACE .)
+    LPAREN          reduce using rule 9 (dict -> LBRACE RBRACE .)
+    $end            reduce using rule 9 (dict -> LBRACE RBRACE .)
+    COMMA           reduce using rule 9 (dict -> LBRACE RBRACE .)
+    RPAREN          reduce using rule 9 (dict -> LBRACE RBRACE .)
+    SEMICOLON       reduce using rule 9 (dict -> LBRACE RBRACE .)
+    RBRACE          reduce using rule 9 (dict -> LBRACE RBRACE .)
+
+
+state 14
+
+    (10) pairs -> pair .
+    (11) pairs -> pair . COMMA pairs
+
+    RBRACE          reduce using rule 10 (pairs -> pair .)
+    COMMA           shift and go to state 25
+
+
+state 15
+
+    (12) pair -> NAME . COLON value
+
+    COLON           shift and go to state 26
+
+
+state 16
+
+    (13) array -> LPAREN values . RPAREN
+
+    RPAREN          shift and go to state 27
+
+
+state 17
+
+    (14) array -> LPAREN RPAREN .
+
+    NAME            reduce using rule 14 (array -> LPAREN RPAREN .)
+    LBRACE          reduce using rule 14 (array -> LPAREN RPAREN .)
+    LPAREN          reduce using rule 14 (array -> LPAREN RPAREN .)
+    $end            reduce using rule 14 (array -> LPAREN RPAREN .)
+    COMMA           reduce using rule 14 (array -> LPAREN RPAREN .)
+    RPAREN          reduce using rule 14 (array -> LPAREN RPAREN .)
+    SEMICOLON       reduce using rule 14 (array -> LPAREN RPAREN .)
+    RBRACE          reduce using rule 14 (array -> LPAREN RPAREN .)
+
+
+state 18
+
+    (15) values -> value .
+    (16) values -> value . COMMA values
+
+    RPAREN          reduce using rule 15 (values -> value .)
+    COMMA           shift and go to state 28
+
+
+state 19
+
+    (17) value -> NUMBER .
+
+    COMMA           reduce using rule 17 (value -> NUMBER .)
+    RPAREN          reduce using rule 17 (value -> NUMBER .)
+    SEMICOLON       reduce using rule 17 (value -> NUMBER .)
+    RBRACE          reduce using rule 17 (value -> NUMBER .)
+
+
+state 20
+
+    (18) value -> dict .
+
+    COMMA           reduce using rule 18 (value -> dict .)
+    RPAREN          reduce using rule 18 (value -> dict .)
+    SEMICOLON       reduce using rule 18 (value -> dict .)
+    RBRACE          reduce using rule 18 (value -> dict .)
+
+
+state 21
+
+    (19) value -> array .
+
+    COMMA           reduce using rule 19 (value -> array .)
+    RPAREN          reduce using rule 19 (value -> array .)
+    SEMICOLON       reduce using rule 19 (value -> array .)
+    RBRACE          reduce using rule 19 (value -> array .)
+
+
+state 22
+
+    (20) value -> CONST_USE .
+
+    COMMA           reduce using rule 20 (value -> CONST_USE .)
+    RPAREN          reduce using rule 20 (value -> CONST_USE .)
+    SEMICOLON       reduce using rule 20 (value -> CONST_USE .)
+    RBRACE          reduce using rule 20 (value -> CONST_USE .)
+
+
+state 23
+
+    (7) const_decl -> NAME EQUALS value . SEMICOLON
+
+    SEMICOLON       shift and go to state 29
+
+
+state 24
+
+    (8) dict -> LBRACE pairs RBRACE .
+
+    NAME            reduce using rule 8 (dict -> LBRACE pairs RBRACE .)
+    LBRACE          reduce using rule 8 (dict -> LBRACE pairs RBRACE .)
+    LPAREN          reduce using rule 8 (dict -> LBRACE pairs RBRACE .)
+    $end            reduce using rule 8 (dict -> LBRACE pairs RBRACE .)
+    COMMA           reduce using rule 8 (dict -> LBRACE pairs RBRACE .)
+    RPAREN          reduce using rule 8 (dict -> LBRACE pairs RBRACE .)
+    SEMICOLON       reduce using rule 8 (dict -> LBRACE pairs RBRACE .)
+    RBRACE          reduce using rule 8 (dict -> LBRACE pairs RBRACE .)
+
+
+state 25
+
+    (11) pairs -> pair COMMA . pairs
+    (10) pairs -> . pair
+    (11) pairs -> . pair COMMA pairs
+    (12) pair -> . NAME COLON value
+
+    NAME            shift and go to state 15
+
+    pair                           shift and go to state 14
+    pairs                          shift and go to state 30
+
+state 26
+
+    (12) pair -> NAME COLON . value
+    (17) value -> . NUMBER
+    (18) value -> . dict
+    (19) value -> . array
+    (20) value -> . CONST_USE
+    (8) dict -> . LBRACE pairs RBRACE
+    (9) dict -> . LBRACE RBRACE
+    (13) array -> . LPAREN values RPAREN
+    (14) array -> . LPAREN RPAREN
+
+    NUMBER          shift and go to state 19
+    CONST_USE       shift and go to state 22
+    LBRACE          shift and go to state 8
+    LPAREN          shift and go to state 9
+
+    value                          shift and go to state 31
+    dict                           shift and go to state 20
+    array                          shift and go to state 21
+
+state 27
+
+    (13) array -> LPAREN values RPAREN .
+
+    NAME            reduce using rule 13 (array -> LPAREN values RPAREN .)
+    LBRACE          reduce using rule 13 (array -> LPAREN values RPAREN .)
+    LPAREN          reduce using rule 13 (array -> LPAREN values RPAREN .)
+    $end            reduce using rule 13 (array -> LPAREN values RPAREN .)
+    COMMA           reduce using rule 13 (array -> LPAREN values RPAREN .)
+    RPAREN          reduce using rule 13 (array -> LPAREN values RPAREN .)
+    SEMICOLON       reduce using rule 13 (array -> LPAREN values RPAREN .)
+    RBRACE          reduce using rule 13 (array -> LPAREN values RPAREN .)
+
+
+state 28
+
+    (16) values -> value COMMA . values
+    (15) values -> . value
+    (16) values -> . value COMMA values
+    (17) value -> . NUMBER
+    (18) value -> . dict
+    (19) value -> . array
+    (20) value -> . CONST_USE
+    (8) dict -> . LBRACE pairs RBRACE
+    (9) dict -> . LBRACE RBRACE
+    (13) array -> . LPAREN values RPAREN
+    (14) array -> . LPAREN RPAREN
+
+    NUMBER          shift and go to state 19
+    CONST_USE       shift and go to state 22
+    LBRACE          shift and go to state 8
+    LPAREN          shift and go to state 9
+
+    value                          shift and go to state 18
+    values                         shift and go to state 32
+    dict                           shift and go to state 20
+    array                          shift and go to state 21
+
+state 29
+
+    (7) const_decl -> NAME EQUALS value SEMICOLON .
+
+    NAME            reduce using rule 7 (const_decl -> NAME EQUALS value SEMICOLON .)
+    LBRACE          reduce using rule 7 (const_decl -> NAME EQUALS value SEMICOLON .)
+    LPAREN          reduce using rule 7 (const_decl -> NAME EQUALS value SEMICOLON .)
+    $end            reduce using rule 7 (const_decl -> NAME EQUALS value SEMICOLON .)
+
+
+state 30
+
+    (11) pairs -> pair COMMA pairs .
+
+    RBRACE          reduce using rule 11 (pairs -> pair COMMA pairs .)
+
+
+state 31
+
+    (12) pair -> NAME COLON value .
+
+    COMMA           reduce using rule 12 (pair -> NAME COLON value .)
+    RBRACE          reduce using rule 12 (pair -> NAME COLON value .)
+
+
+state 32
+
+    (16) values -> value COMMA values .
+
+    RPAREN          reduce using rule 16 (values -> value COMMA values .)
+
